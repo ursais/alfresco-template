@@ -12,7 +12,7 @@
 ```shell
 apt install certbot docker-compose git nginx python3-certbot-nginx ufw
 cd /opt
-git clone https://github.com/ursais/template template
+git clone https://github.com/ursais/alfresco-template alfresco
 ```
 
 ## UFW
@@ -26,19 +26,19 @@ ufw enable
 
 ## Nginx
 
-* Create `/etc/nginx/sites-available/template.example.com` with:
+* Create `/etc/nginx/sites-available/alfresco.example.com` with:
 
 ```nginx
-upstream template {
+upstream alfresco {
     server 127.0.0.1:8080; 
 }
 
 server {
     listen 80;
-    server_name template.example.com;
+    server_name alfresco.example.com;
 
     location / {
-        proxy_pass  http://template;
+        proxy_pass  http://alfresco;
     }
 }
 ```  
@@ -47,23 +47,23 @@ server {
 
 ```shell
 cd /etc/nginx/sites-enabled
-ln -s ../sites-available/template.example.com .
+ln -s ../sites-available/alfresco.example.com .
 nginx -t
 certbot 
 ```
 
 ## Systemd
 
-Create `/etc/systemd/system/template.service` with:
+Create `/etc/systemd/system/alfresco.service` with:
 
 ```unit file (systemd)
 [Unit]
-Description=Template container starter
+Description=Alfresco container starter
 After=docker.service network-online.target
 Requires=docker.service network-online.target
 
 [Service]
-WorkingDirectory=/opt/template
+WorkingDirectory=/opt/alfresco
 Type=oneshot
 RemainAfterExit=yes
 
@@ -90,7 +90,7 @@ service template start
 
 Run:
 ```shell
-cd /opt/template
+cd /opt/alfresco
 git pull
-service template restart
+service alfresco restart
 ```

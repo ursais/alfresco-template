@@ -1,4 +1,4 @@
-# Template Project
+# Template repository for Alfresco Project
 
 ## Table of Contents
 * [Development](#Development)
@@ -16,7 +16,8 @@
 ```shell
 apt install docker-compose git
 cd /opt
-git clone https://github.com/ursais/template template
+git clone https://github.com/ursais/alfresco-template alfresco
+cd alfresco
 ```
 
 ### Build
@@ -42,4 +43,4 @@ Take a look at [README.md](./helm/README.md)
 ## Support
 
 Report any issue to this
-[Github project](https://github.com/ursais/template/issues).
+[Github project](https://github.com/ursais/alfresco-template/issues).
